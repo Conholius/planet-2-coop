@@ -120,3 +120,19 @@ See [069–082 ledger](DIAGNOSTICS_069_082.md) and [080–082 latency analysis](
 - Updated current overview, status, roadmap, transport/benchmark/evidence indexes and historical HTTP context. No game run, installation/save/config change, proprietary source/binary, raw log, session identifier or personal path is part of this publication.
 
 [083–084 ledger](DIAGNOSTICS_083_084.md) · [Own native bridge, logger and measured limits](../networking/NATIVE_BRIDGE.md).
+
+
+## 2026-10-25 — Native scenery/recovery, local UI and independent previews through 106
+
+- Reread retained private logs/summaries for 085–106 without running games or modifying test installations/saves.
+- 085 retained persistent menu/dialog proof: 20 opens/closes. Real lobby creation remains false and UI work is deferred.
+- Recorded 086/088–090 message/framing/exact-numeric results. Retained 087 native log fails first Python connection while Python completes; do not certify that pair or claim a cause for the earlier Advance outlier.
+- 091–094 now establish actual manual Create/Move/Delete and live-session Undo/Redo over the own bridge; corrected 093 captures the actual SelectAndEdit DeleteModularScenery path and verifies source deletion.
+- 095/096 handle lost confirmations and real pipe cuts; corrected 097 handles 18 Python restarts, including supervisor completion.
+- 098/099 restore deliberately saved Guest state/mappings/status and offline actions. 100 is staged, 101 completes without observed overlap, 102 proves real ungated overlap and ordered catch-up through sequence 51.
+- 103/104 prove reverse/bidirectional separate-object edits with echo/duplicate guards. 105 converges but explicitly has only partial phase overlap; its long Create acknowledgement is not presented as pipe latency or solved editor coexistence.
+- 106LIVE2 succeeds with a custom resource-bound opaque rock/ring, independent of B's own preview. Two cycles, 623 poses, six rejects, cleanup and all completions; mean/P95/max Python-receipt-to-readback-ACK 20.5641/34.1381/61.4005 ms. Advance-gap maxima remain separately qualified.
+- 107 complete code supplied in chat for simultaneous streams, independent restart/stop and generation/echo guards. No run reviewed.
+- Reconciled overview, current status, evidence/runtime indexes, roadmap and native transport/recovery/benchmark/placement notes. Published only original research summaries; no private logs, proprietary source/assets/binaries, session/save IDs or personal paths.
+
+[085–107 ledger](DIAGNOSTICS_085_107.md).

@@ -1,5 +1,13 @@
 # Transport and editor measurements
 
+## Current update — 2026-10-25, through 106; 107 pending
+
+The [085–107 evidence ledger](../research/DIAGNOSTICS_085_107.md) supersedes the earlier next-step/pending statements below: manual native-bridge Create/Move/Delete and Undo/Redo, controlled pipe/Python/checkpoint recovery, reverse/bidirectional separate-object edits and A-to-B independent previews now have runtime evidence. 105 has only partial phase overlap; 107 simultaneous bidirectional preview code is supplied but untested. Earlier sections retain their dated evidence scope.
+
+### 106LIVE2 preview measurements
+
+Python update receipt → B readback-ACK receipt: mean 20.5641 ms, P95 34.1381 ms, maximum 61.4005 ms over 623 poses. This excludes A input/sampling and is not presented-frame or committed-command latency. A/B diagnostic callbacks average 0.012902/0.030214 ms, max 0.414800/0.485500 ms. Maximum Advance gaps 269.8039/259.6835 ms remain unattributed. 105's approximately 17.79-second B-origin Create acknowledgement is a separate preview/committed-application interaction, not evidence of slow pipe transmission.
+
 **Updated 2026-10-24 through 084 Step 11.** [Latest ledger](../research/DIAGNOSTICS_069_082.md) · [080–082 latency details](HTTP_LATENCY_080_082.md) [Transport](TRANSPORT.md) · [Earlier ledger](../research/DIAGNOSTICS_035_049.md) · [050–068 ledger](../research/DIAGNOSTICS_050_068.md)
 
 All numbers below are owner-run local tests on the reported PC2 setup, not public automated two-client QA. Read timing boundaries before comparing columns. Raw logs and personal machine details stay private.

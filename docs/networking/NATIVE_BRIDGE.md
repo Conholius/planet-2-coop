@@ -1,6 +1,12 @@
 # Own native bridge, local messaging and diagnostics
 
-**Updated 2026-10-24. Runtime evidence: diagnostic 084 through Step 11, plus the separate Lua-logger test. Step 12 is prepared; no reviewed result yet.**
+**Updated 2026-10-25. Runtime results now extend through 106; 107 is prepared/unverified. The older Step 11 evidence remains below.**
+
+## Current update — 2026-10-25, through 106; 107 pending
+
+The [085–107 evidence ledger](../research/DIAGNOSTICS_085_107.md) supersedes the earlier next-step/pending statements below: manual native-bridge Create/Move/Delete and Undo/Redo, controlled pipe/Python/checkpoint recovery, reverse/bidirectional separate-object edits and A-to-B independent previews now have runtime evidence. 105 has only partial phase overlap; 107 simultaneous bidirectional preview code is supplied but untested. Earlier sections retain their dated evidence scope.
+
+
 
 [Current status](../research/STATUS.md) · [083–084 evidence ledger](../research/DIAGNOSTICS_083_084.md) · [Historical Kepler measurements](HTTP_LATENCY_080_082.md) · [Benchmarks](BENCHMARKS.md)
 
@@ -128,20 +134,23 @@ Sources are the two role-labelled Native084-Step11.log files and Python084-Step1
 
 Both Lua/native completion markers and PythonCompleted are true. Python reports sandboxieInjected=false and both clients closed. The wire count includes transport polling/control frames; it is not the number of unique game messages. Python verifies payload and sequence; the receiving game verifies the message before acknowledging it. No park edits or saves occurred in Step 11.
 
-## Step 12: prepared, not yet verified
+## From message transport to actual scenery
 
-Next: capture one manually placed AQ_Rock_04 on A, leave its distinct next preview active, transfer resource plus position/orientation through the DLL/companion path, create and commit once on B, verify mappings/world state over later Advances, then redeliver identical command bytes and require no additional effect.
+091 supplies the manual Create/duplicate proof previously pending as Step 12. 092–094 add manual Move/Delete and live-session Undo/Redo. 095/096 cover lost confirmations and real pipe breaks; corrected 097 covers 18 Python restarts; 098–102 cover controlled saved-Guest restart and catch-up. 103/104 establish Guest-origin and separate-object bidirectional edits. Read the [085–107 ledger](../research/DIAGNOSTICS_085_107.md) for exact scope and private evidence anchors.
 
-The supplied test limits scale to one, uses logical command/object IDs separate from local Part/Entity IDs and explicit applied/duplicate proofs. Its code and instructions have been provided, but no Step-12 result was reviewed at this documentation cutoff. The older 079–081 manual-Create success used HTTP; it must not be relabelled as native-pipe Create success.
+106LIVE2 adds an independent resource-bound opaque AQ_Rock_04/ring on B following A's live preview while B moves its own preview. It applies 623 poses across two cycles, rejects six duplicates/stale messages and removes both roots. Python receipt-to-readback confirmation averages 20.5641 ms, P95 34.1381 ms, max 61.4005 ms. This is not full input-to-visible latency or a scenery commit.
+
+105's partial-overlap result and long B-origin Create wait show that safe durable commits during a local ordinary preview remain separate work. 107's planned simultaneous bidirectional visual streams do not yet have runtime results.
 
 ## Remaining engineering risks and work
 
-- Port command/status/revision, origin filtering and recovery guards to this transport; earlier HTTP recovery tests do not automatically certify pipe recovery.
-- Test pipe break/reconnect, external companion restart, slow/unavailable peer, bounded-queue overflow/backpressure and world deactivation during outstanding I/O.
-- Investigate the owner's recurring game-exit crash reporter. It predates this DLL work and persists in the reported setup without ACSEDebug; cause is unknown and a controlled no-mod / ACSE-only / own-DLL comparison has not passed. In-test success does not prove a crash-free process exit.
-- Test the next manual Create, then Move/Delete and guest-originating edits, conflicts and Undo ownership.
-- Implement and test an authenticated remote companion-to-companion or relay connection. Define baseline/park transfer, lobby and saving independently.
-- Verify durable status/checkpoint integration, ambiguous crash outcomes, mismatched saves, late join and repair.
-- Expand resources, rotation/scale/property coverage, long soaks and actual presented-frame analysis.
+- Execute 107 and test preview disconnect cleanup, newer-generation protection, echo suppression and sustained bounded load.
+- Resolve remote durable commits versus an active local undo preview; define same-object conflict authority and multiplayer Undo ownership.
+- Implement authenticated remote companion networking; local pipes are same-machine only.
+- Integrate automatic durable metadata/checkpoints, uncertain crash outcomes and repair. Controlled save/restart tests do not establish arbitrary-crash exactly-once.
+- Finalize lobby/baseline transfer/loading/saving UX after architecture decisions; 085 is a local UI proof.
+- Expand resources, rotation/scale/properties/groups and presented-frame profiling.
+- Investigate the recurring exit crash with isolated controls. Successful in-test completion is not proof of crash-free shutdown.
+- Preserve evidence qualifications: retained 087 native/Python results do not form an all-participant pass; 101 has no observed overlap and 105 only partial phase overlap.
 
-No shipped netcode, arbitrary-crash exactly-once, internet co-op or full-park simulation synchronization is claimed.
+No shipped internet netcode, arbitrary-crash exactly-once or full-park simulation synchronization is claimed.

@@ -1,36 +1,29 @@
 # Scenery co-op prototype: completed gates and next work
 
-**Updated 2026-10-24 through diagnostic 084 Step 11; Step 12 not yet verified.** [Status](../research/STATUS.md) · [Latest ledger](../research/DIAGNOSTICS_069_082.md) · [Protocol](../networking/HTTP_SYNC_DESIGN.md) · [Latency](../networking/HTTP_LATENCY_080_082.md)
+**Updated 2026-10-25.** [Status](../research/STATUS.md) · [085–107 ledger](../research/DIAGNOSTICS_085_107.md)
 
-## Initial goal achieved within diagnostic scope
+## Achieved within local diagnostic scope
 
-Two local PC2 clients can apply scripted AQ_Rock_04 Create/Move/Delete/native Undo/Redo events through a loopback relay, suppress duplicate effects and pass controlled reconnect/restart tests. One player-confirmed host placement replicates to the guest while the host's next unconfirmed preview remains active and local.
+Own DLL/Named Pipes/external Python carry manual Create/Move/Delete and live-session Undo/Redo without ACSEDebug. Lost confirmations, pipe breaks, companion restarts and controlled saved-Guest catch-up pass. Separate objects can originate from either client with tested duplicate/echo suppression. 102 demonstrates actual overlapping catch-up; 105 achieves final convergence but only partial phase overlap.
 
-This is an owner-run diagnostic prototype, not a finished multiplayer mod or automated QA suite. Local Part-IDs and Entity-IDs are not universal identities. No internet deployment or general manual Move/Delete capture has passed.
+106 adds an independent A-to-B visual rock/ring while B moves its own preview. This is ephemeral rendering, not a durable park commit. 085 supplies a deferred local menu/dialog proof.
 
-## Own transport milestone
+These are owner-run diagnostic gates, not a shipped multiplayer mod. The native interface is build-profile specific; remote security, conflict ownership, automatic persistence and full simulation remain open.
 
-The preferred next path is own DLL -> bounded local Named Pipes -> external companion. Direct Lua strings under GC, own logging without ACSEDebug and 1,000 verified messages each way between two local clients passed. Kepler was set aside because the measured history-dependent seconds-long waits are unsatisfactory, not because HTTP itself cannot carry operations. [Evidence and timings](../networking/NATIVE_BRIDGE.md).
+## Next acceptance gates
 
-The owner still reports a game-exit crash reporter; successful communication completion is not a shutdown-safety proof. Own diagnostic output is implemented; a full interactive debugger is not.
+1. **107, prepared/unverified:** simultaneous A↔B previews with two generations each, one ghost per receiver, continuous independent own previews, stale/duplicate/echo rejection and verified cleanup.
+2. Remote committed edits while the recipient's ordinary preview remains active: prove safe completion or a clear bounded defer policy. Do not confuse ghost rendering with a solved shared undo-preview path.
+3. Same-object conflicts, origin authority/revisions and multiplayer Undo ownership.
+4. Authenticated remote companion connection across two computers, failure/backpressure checks and reproducible install/start/stop.
+5. Matching save + durable registry/status/tombstone recovery, including uncertain commit outcomes and repair.
+6. Host/join admission, baseline transfer and Host-controlled save UX; revisit the archived 085 UI after these decisions.
+7. Broader resources/properties, soak/GC tests, actual rendered-frame measurements and isolated exit-crash diagnosis.
 
-## Next implementation gates
+## Evidence rules
 
-1. Execute 084 Step 12: transfer one ordinary host Create through the new native path, preserve its next preview, commit once on Guest, verify mappings/transform and reject an identical duplicate. Code is prepared; no reviewed outcome.
-2. Capture manual host Move/Delete and repeated Create safely after actual confirmation; distinguish preview updates/cancellation from durable edits.
-3. Build generalized logical identity/revision/status management and origin/remote echo suppression, then guest intent acceptance and conflict ownership.
-4. Preserve native completion/verification and bounded work; benchmark request count, application latency and Advance gaps separately.
-5. Validate a secured external-companion remote route with a friend, including packaging, auth, failures and bounded reconnect. First test local pipe/companion interruption and world-deactivation behavior.
-6. Integrate registry metadata/checkpoints and test ambiguous client-crash windows, mismatched saves, replay and late join.
-7. Prototype host/join UI after identifying actual PC2 runtime extension points. The product direction is a shared host-controlled session and save workflow; independently loaded local test parks are a testing scaffold.
-8. Expand resources, full transform validation, groups/dependencies and Undo ownership, then soak and presented-frame tests.
+Require matching sessions and all participant completions; inspect counters and world checks rather than completion labels alone. 087's retained mismatched result pair is not certified. 101's completion is not overlap; 105's completion is not all-phase overlap.
 
-## Reproducibility and acceptance
+Keep committed commands lossless and ordered; previews may coalesce to the latest valid pose. A worker never invokes Lua/game APIs. No persistent-placement claim follows from InstantiatePrefab, and no arbitrary-crash exactly-once claim follows from controlled checkpoint tests.
 
-Keep matched protocol sessions, canonical payloads, local mappings, actual native mutation counts, application proofs, task joins and explicit expected/observed results. Retain raw evidence privately and publish summarized findings. Corrected successful runs must be distinguished from initial/aborted attempts. A final summary on failure is not Completed=true.
-
-For 082 reproduce: both game clients in tropical parks, separate control listener, ten warmups plus 50 measured probes per active role/configuration, seven configurations then reversed order, fixed bodies and request IDs, 50 ms requested spacing, Python control in Guest sandbox. Leave all participants alive until all fourteen phase barriers and final completions finish.
-
-## Boundaries
-
-A guest-local checkpoint save was specifically permitted in 078, not an established general guest-save policy. Native Undo stacks do not survive the tested reload; replay safety and optional cross-session Undo are separate concerns. A menu/lobby does not implement world transfer. No full guest/staff/economy/terrain/path/track/ride simulation, production security or released playable co-op is claimed.
+No released playable internet co-op or full-park simulation is claimed.

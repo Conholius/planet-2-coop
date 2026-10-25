@@ -1,5 +1,22 @@
 # Evidence index
 
+## Latest evidence — 2026-10-25
+
+[085–107 ledger](DIAGNOSTICS_085_107.md) records the retained native/Python source anchors, successful corrections and limits. Runtime coverage now reaches 106; **107 is code supplied, no reviewed run**. This supersedes older pending Step 12 statements below.
+
+| Area | Current evidence |
+| --- | --- |
+| Local menu | 085 retained 20 opens/closes, both completion markers; no real session |
+| One-client hardening | 086, 088–090 pass retained message/framing/numeric tests; retained 087 native file fails first connection despite a completed Python file |
+| Native scenery/history | 091–094 matched A/B/Python completions; actual manual Create/Move/Delete and Undo/Redo, duplicate checks |
+| Recovery | 095/096 lost confirmations/pipe cuts; 097 18 Python restarts with supervisor completion; 098/099 saved-Guest restore/offline catch-up |
+| Catch-up overlap | 100 staged; 101 completes without observed overlap; 102 actual overlap and ordered catch-up through sequence 51 |
+| Bidirectional edits | 103 reverse, 104 separate objects both directions; 105 all effects complete but only partial phase overlap |
+| Independent preview | 106LIVE2: 623 applied poses, two cycles, own B preview retained, six rejects, user visual confirmations, both native/Lua pairs and Python complete |
+| Next test | 107 simultaneous bidirectional previews, not yet verified |
+
+Private logs remain private. Matching summaries, actual world/readback checks and visual observations are distinct evidence. No production/internet or arbitrary-crash exactly-once claim follows.
+
 These are names of locally researched materials, **not bundled source files**. The original copies remain under ignored `local/` or a separately maintained authorized evidence archive. The dates/builds below are file-label claims, not necessarily the version of the installed executable. The first table and 005/006 entries preserve their historical evidence scope; current runtime results through 084 Step 11 are indexed in the later sections and in [STATUS.md](STATUS.md).
 
 | Area | Local source material | Confirmed symbols/observations | Qualification |

@@ -1,68 +1,49 @@
 # Current research status
 
-**Updated 2026-10-24; reviewed through diagnostic 084 Step 11 and the own-logger test. Own local transport is promising; Step 12 manual Create is prepared, not yet verified. No released playable co-op or full simulation synchronization.**
+**Updated 2026-10-25. Completed retained diagnostics reach 106; 107 code is supplied but untested. Local supported-scenery prototype, not released internet co-op.**
 
-[Overview](../../README.md) · [Runtime tests](../testing/RUNTIME_TESTS.md) · [Latest ledger](DIAGNOSTICS_069_082.md) · [HTTP latency](../networking/HTTP_LATENCY_080_082.md) · [Design](../networking/HTTP_SYNC_DESIGN.md)
+[Overview](../../README.md) · [Latest evidence ledger](DIAGNOSTICS_085_107.md) · [Native bridge](../networking/NATIVE_BRIDGE.md) · [Runtime history](../testing/RUNTIME_TESTS.md)
 
-## Current direction
+## Verified in running games
 
-Kepler HTTP remains useful historical evidence, but its observed request-history-dependent one-second tails are unsatisfactory for responsive editing. The preferred experimental path is now our own DLL, a bounded asynchronous local pipe bridge and an external companion. [Detailed 083/084 findings and timing boundaries](../networking/NATIVE_BRIDGE.md) · [Latest evidence ledger](DIAGNOSTICS_083_084.md).
+- The own profiled x64 DLL exchanges direct Lua strings, handles the tested GC pressure and provides asynchronous diagnostic output without ACSEDebug. ACSE remains the loader.
+- Two local sandboxed clients communicate through separate Named Pipes and external Python. 084 Step 11 passed 1,000 verified messages each direction.
+- 091–094 replicate manual Create, Move, Delete and live-session Undo/Redo, with application/world checks and unchanged duplicate skips.
+- 095/096 handle lost confirmations and nine real pipe cuts/resumes per client. Corrected 097 handles 18 Python restarts; both clients, Python and supervisor complete.
+- 098/099 restore a deliberately saved B checkpoint while A stays alive; B restores mappings/status and catches up three offline changes, including Delete, without resurrecting the object on a late Create.
+- 100 converges but has staged release gates. 101 removes gates and completes but does not observe real overlap. **102** establishes real overlap without artificial catch-up gates: B restores through sequence 2 and applies 3–51 in order, skipping 52 duplicates.
+- 103 sends manual Guest edits to Host; 104 sends each client's own three edits to the other. Logical mappings stay separate, with no unexpected publications and tested duplicate/echo suppression.
+- **105 converges with only partial phase overlap.** Both clients complete; AllPhasesOverlapObserved=false. B-origin Create confirmation took about 17.79 seconds while the owner observed a wait for local-preview closure. Committing remote edits during a local preview is not solved by that result.
+- **106LIVE2** displays A's live pose as a separate opaque rock/ring on B while B moves its own placement preview: 623 applied poses in two cycles, two roots created/destroyed, six stale/duplicate rejects and 8,336 own-preview checks. User visual confirmation and both native/Lua pairs plus Python complete.
+- **085** proves a persistent local main-menu entry/dialog: 20 opens/closes and both completion markers. This is not a working multiplayer lobby and is deferred until the architecture is settled.
 
-The own logger works without ACSEDebug; it replaces our diagnostic output, not ACSE itself or a full debugger. The owner reports an unresolved crash reporter at game exit. A native-pipe scenery Create result has not yet been reviewed.
+Detailed private-file anchors, counts, timing boundaries and qualifications are in the [085–107 ledger](DIAGNOSTICS_085_107.md). These are owner-run diagnostics, not an automated production QA suite. PC2 build 1.11.4.1011357 / ACSE 0.729 identify the established setup; compatibility with other executable profiles is unproven.
 
-## Verified in a running game
+## Transport and performance decision
 
-Reported initial environment: Windows/Steam, PC2 1.11.4.1011357, ACSE 0.729, ForgeUtils 2.7.0, ACSEDebug 0.014. New own-logger/Step-11 runs use the owner's ACSEDebug-disabled setup. Public executable/package hashes are not established. Tests are owner-run diagnostics, not an automated multiplayer QA suite.
+Kepler's history-dependent seconds-long waits in 082/083 were unsatisfactory for responsive editing. The exact internal limiter remains hypothetical; HTTP itself is not rejected. The preferred local boundary is own DLL → bounded asynchronous Named Pipes → external companion. Workers copy/transfer data; Lua/game API calls stay on the game thread.
 
-- **007–034:** local hierarchy/Create/Move/Delete, explicit commits, save/reload, independent identical resources and guarded separate-run replay.
-- **035–047:** native loopback GET/text and relaxed Kepler readiness. Tested requests work without active Frontier connectivity once a valid Kepler user context exists. Original 038 was sequential; its later tropical-park repeat passed simultaneous numbered exchange.
-- **048–054:** batching, shared completion tokens, 2,701 rocks / 13 commits, groups up to 500, performance timing and targeted/final audits.
-- **055–065:** local native Undo/Redo, validation, controlled ACK/reset/server and completed-checkpoint client recovery; native history absent after the tested reload. Positional Move counteractions from manually transferred data worked.
-- **066–068:** synthetic registries to 100,000 entries; 2,701 real registered rocks, 1,464 moves, 84 commits and 180,370 checks. Synthetic entry counts are not physical-object capacity.
-- **069:** full 7,263-row GetAllResults 32.5976 ms, first Lua search 4.2579 ms. Twenty retained-table searches averaged 3.9730 ms.
-- **070:** 110 targeted known/unknown queries passed with no full catalogue fetch/search; maximum own callback 0.1188 ms and paired Advance gap 18.5428 ms.
-- **071–074:** two simultaneous local clients each applied scripted Create/Move/Delete and native Undo/Redo, with matching tested world state and unchanged duplicate effects.
-- **075–077:** both clients survived refused first ACKs, real TCP aborts and a controlled journal-backed server restart without repeating applied native actions.
-- **078:** Guest B saved one new checkpoint, restarted while Host/server remained alive, restored records/mappings, skipped old effects and applied only a new Move. This is a controlled completed-checkpoint workflow.
-- **Corrected 079:** an actual ordinary host editor commit was captured and replicated to B once; its duplicate was skipped.
-- **080/081:** that confirmed placement replicates while the distinct next preview on A remains local and active in all sampled observations. Neither test sends an unconfirmed preview.
-- **082:** all 14 phases and 1,200 probes passed: A 480, B 600, sandboxed Python 120; no bad bodies, all native tasks joined and all participants/server completed. No editor or save calls.
+106 measures **20.5641 ms mean / 34.1381 ms P95 / 61.4005 ms maximum** from Python update receipt to B readback-ACK receipt. This excludes A sampling/input delay and does not measure rendered-frame latency. Mean diagnostic callback costs are 0.012902 ms on A / 0.030214 ms on B; maximum Advance gaps are about 270/260 ms, with no unique cause established. Earlier callback gaps, including the 086/087 investigation, must not be relabelled as scene-transfer latency.
 
-- **083:** four spacings (50/250/500/1,000 ms), 220 valid probes and 224 joined tasks each. 50/250-ms runs develop one-second tails; all 60 post-pause probes are fast after 120 seconds without diagnostic requests. Exact throttling implementation remains hypothetical.
-- **084 Steps 6–8:** direct profiled Lua-string exchange, invalid-input and stack/result checks; 4,100 round trips and 13 confirmed full GCs passed.
-- **084 Steps 9/10:** pipe communication inside one sandbox and across to external Python passed, including deliberate delayed replies while Advances continued.
-- **Own logger test:** 1,000 exact messages with and without ACSEDebug; no missing/altered records and both completion markers true.
-- **084 Step 11:** both local sandboxed game clients and external Python pass 1,000 messages in each direction. A/B record 146/175 Advances during the held message; 112 reverse messages are acknowledged during that interval. Both Lua/native pairs and Python complete; no game/save changes.
+## Evidence qualifications
 
-## Historical Kepler latency finding and later decision
+The retained 087 native log times out before first Python connection although its Python file completes. This retained pair cannot establish an all-participant pass or explain the earlier 657-ms gap. Historical successful claims must be checked against matched run evidence.
 
-**Observed:** 080 took 591.284 ms from original host commit return to confirmation on A; 081 took 2,239.214 ms. These include proof/poll/verification gates. In 081, the B commit call was 0.017 ms, completion wait 16.231 ms, and command reception to completed commit 136.577 ms.
+106 proves a resource-bound independent visual proxy for AQ_Rock_04 at scale one. It does not prove transparency, persistent scenery, safe concurrent commits or bidirectional previews. 107 is **prepared/unverified**.
 
-**Observed:** 082 starts with fast single-client probes; during the shared phase requests develop approximately one-second tails. Later B medians remain about 944–947 ms even alone, with a larger backlog and on a separate listener. The delay is inside RunKeplerRequest, not worker dispatch or Join. Server processing/write sections remain fast; Guest Python medians are 0.94–0.99 ms, max total 24.04 ms. [Full measurements and limits](../networking/HTTP_LATENCY_080_082.md).
+Controlled checkpoint recovery does not establish atomic save/command persistence or arbitrary-crash exactly-once. Runtime entity IDs and local part IDs remain distinct from logical network IDs. Entity/transform readbacks and user visual observations are separate evidence.
 
-**Hypothesis:** request-history-dependent pacing, limiting or another internal request-path wait. No fixed quota, limiting scope, Frontier policy, TCP retransmission cause or exact Kepler implementation has been demonstrated. Time before server accept and delayed completion after reply remain unresolved.
+## Derived architecture
 
-## Derived design direction
+Keep immutable ordered committed actions with revisions, tombstones, application proofs and checkpoint binding. Keep ephemeral preview poses in a separate generation/sequence/origin flow; latest-pose coalescing must not drop committed commands. Remote ghost rendering must not enter the ordinary undo/placement path or publish itself as a local action.
 
-Use a minimal logical-key/local-Part-ID/revision registry, immutable command status, fresh Entity-ID lookups, ordered accepted events and application acknowledgements. Transmit changed supported objects rather than continuously retransmitting every unchanged object. Keep sampled verification and recovery outside the delivery-critical path where safely validated; retain native completion and duplicate guards.
+## Next milestones and unknowns
 
-Kepler is no longer the preferred experimental transport. This does not reject HTTP as a remote protocol for an external companion. The own local DLL/pipe bridge is executed through Step 11; remote transport, reconnect and game-effect replication over it remain unproven. Retain the earlier immutable identity, admission, completion and application-proof requirements. Fewer Advances are not by themselves an optimization target: distinguish CPU work, completion observation, verification and visual frames.
+1. Run 107: simultaneous A↔B previews, independent stopping/restarting, stale generations, duplicate/echo guards and cleanup.
+2. Resolve remote durable-edit application while a local preview is active; define same-object conflict authority and per-user Undo policy.
+3. Add and test authenticated remote companion networking; Named Pipes are same-machine only.
+4. Integrate durable metadata with matching saves, ambiguous-crash reconciliation and repair.
+5. Finish lobby/baseline transfer/loading/saving UX; extend resources, scale, properties and groups.
+6. Isolate the reported exit crash and measure presented frames/long-duration workloads.
 
-## Not demonstrated
-
-- Remote HTTPS/friend testing, authentication, uploads, long polling or persistent-connection behavior.
-- General ordinary manual Move/Delete capture, repeated/cancelled placements, arbitrary resources/full world transforms, groups and dependencies.
-- Simultaneous conflicting edits, authoritative ownership and multiplayer Undo policy.
-- Automatic in-save mod-registry persistence, arbitrary client-crash atomicity, mismatched-save repair, late join or resync.
-- A production host/join lobby, complete automatic shared-save workflow or released playable co-op.
-- Full guest/staff/economy/terrain/path/track/ride simulation, universal capacity or presented-frame guarantees.
-- Steam/cache/service-shutdown independence or complete Cloud/save/account isolation.
-
-## Next milestones
-
-1. Run 084 Step 12: one manual host rock to Guest through the native bridge, preserving the next local preview and testing identical redelivery. No result reviewed yet.
-2. Test pipe/companion interruption and recovery, then manual Move/Delete, repeated placement, cancellation and Undo ownership. Do not transfer HTTP recovery guarantees automatically.
-3. Isolate and fix the reported exit crash; validate a remote secured companion link and practical host/join UX separately.
-4. Integrate durable metadata/checkpoints and explicit ambiguous-crash reconciliation before promising general recovery.
-
-Historical 005/006 outside-Sandboxie findings remain unchanged. Later successful Host/Guest tests supersede the old "guest unvalidated" status only for the tested arrangement; they do not certify every isolation boundary.
+Full park simulation (guests, staff, economy, paths, terrain, rides), general resource coverage, WAN play and released playable co-op remain unverified. Earlier HTTP, registry, catalogue, placement and persistence findings remain historical evidence in their existing ledgers.

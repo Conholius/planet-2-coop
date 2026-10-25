@@ -1,5 +1,9 @@
 # Recovery, object identity and undo history
 
+## Current update — 2026-10-25, through 106; 107 pending
+
+The [085–107 evidence ledger](../research/DIAGNOSTICS_085_107.md) supersedes the earlier next-step/pending statements below: manual native-bridge Create/Move/Delete and Undo/Redo, controlled pipe/Python/checkpoint recovery, reverse/bidirectional separate-object edits and A-to-B independent previews now have runtime evidence. 105 has only partial phase overlap; 107 simultaneous bidirectional preview code is supplied but untested. Earlier sections retain their dated evidence scope.
+
 **Evidence through diagnostic 082, reviewed 2026-10-23.** [Two-client ledger](../research/DIAGNOSTICS_069_082.md) [Ledger](../research/DIAGNOSTICS_050_068.md) · [Proposed protocol](HTTP_SYNC_DESIGN.md) · [Serialization](../serialization/README.md)
 
 ## Three different kinds of state

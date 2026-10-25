@@ -1,5 +1,22 @@
 # Runtime tests — PC2 lifecycle, scenery and transport capability
 
+## Latest evidence — 2026-10-25
+
+[085–107 ledger](../research/DIAGNOSTICS_085_107.md) records the retained native/Python source anchors, successful corrections and limits. Runtime coverage now reaches 106; **107 is code supplied, no reviewed run**. This supersedes older pending Step 12 statements below.
+
+| Area | Current evidence |
+| --- | --- |
+| Local menu | 085 retained 20 opens/closes, both completion markers; no real session |
+| One-client hardening | 086, 088–090 pass retained message/framing/numeric tests; retained 087 native file fails first connection despite a completed Python file |
+| Native scenery/history | 091–094 matched A/B/Python completions; actual manual Create/Move/Delete and Undo/Redo, duplicate checks |
+| Recovery | 095/096 lost confirmations/pipe cuts; 097 18 Python restarts with supervisor completion; 098/099 saved-Guest restore/offline catch-up |
+| Catch-up overlap | 100 staged; 101 completes without observed overlap; 102 actual overlap and ordered catch-up through sequence 51 |
+| Bidirectional edits | 103 reverse, 104 separate objects both directions; 105 all effects complete but only partial phase overlap |
+| Independent preview | 106LIVE2: 623 applied poses, two cycles, own B preview retained, six rejects, user visual confirmations, both native/Lua pairs and Python complete |
+| Next test | 107 simultaneous bidirectional previews, not yet verified |
+
+Private logs remain private. Matching summaries, actual world/readback checks and visual observations are distinct evidence. No production/internet or arbitrary-crash exactly-once claim follows.
+
 [← Documentation guide](../README.md) · [Current status](../research/STATUS.md) · [Scenery research](../placement/README.md)
 
 **Updated 2026-10-24, reviewed through 084 Step 11 and the own-logger test. Step 12 remains prepared/unverified.** This page separates experiments that **ran in PC2**, tests that were **not run**, and historical failures. Log excerpts here are short manually transcribed observations; **complete private logs are not committed**.
