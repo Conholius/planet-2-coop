@@ -1,14 +1,14 @@
 # Own native bridge, local messaging and diagnostics
 
-**Updated 2026-10-25. Runtime results now extend through 106; 107 is prepared/unverified. The older Step 11 evidence remains below.**
-
-## Current update — 2026-10-25, through 106; 107 pending
-
-The [085–107 evidence ledger](../research/DIAGNOSTICS_085_107.md) supersedes the earlier next-step/pending statements below: manual native-bridge Create/Move/Delete and Undo/Redo, controlled pipe/Python/checkpoint recovery, reverse/bidirectional separate-object edits and A-to-B independent previews now have runtime evidence. 105 has only partial phase overlap; 107 simultaneous bidirectional preview code is supplied but untested. Earlier sections retain their dated evidence scope.
-
-
+**Updated 2026-10-26. Local runtime evidence through 118; 119 prepared only.**
 
 [Current status](../research/STATUS.md) · [083–084 evidence ledger](../research/DIAGNOSTICS_083_084.md) · [Historical Kepler measurements](HTTP_LATENCY_080_082.md) · [Benchmarks](BENCHMARKS.md)
+
+## Current update — 2026-10-26, through 118; 119 prepared
+
+The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
+
+Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
 
 ## Current decision
 
@@ -134,23 +134,23 @@ Sources are the two role-labelled Native084-Step11.log files and Python084-Step1
 
 Both Lua/native completion markers and PythonCompleted are true. Python reports sandboxieInjected=false and both clients closed. The wire count includes transport polling/control frames; it is not the number of unique game messages. Python verifies payload and sequence; the receiving game verifies the message before acknowledging it. No park edits or saves occurred in Step 11.
 
-## From message transport to actual scenery
+## Scenery application and recovery now verified locally
 
-091 supplies the manual Create/duplicate proof previously pending as Step 12. 092–094 add manual Move/Delete and live-session Undo/Redo. 095/096 cover lost confirmations and real pipe breaks; corrected 097 covers 18 Python restarts; 098–102 cover controlled saved-Guest restart and catch-up. 103/104 establish Guest-origin and separate-object bidirectional edits. Read the [085–107 ledger](../research/DIAGNOSTICS_085_107.md) for exact scope and private evidence anchors.
+The earlier prepared-Step-12 status is superseded by 091–118. Manual source effects, receiver world checks, logical mappings, command/echo guards and controlled recovery now run over the own bridge. [085–107](../research/DIAGNOSTICS_085_107.md) preserves the progression; [107–119](../research/DIAGNOSTICS_107_119.md) details independent tokens, integrated placement, live Moves, history counteractions, cross-creator leases and pipe recovery.
 
-106LIVE2 adds an independent resource-bound opaque AQ_Rock_04/ring on B following A's live preview while B moves its own preview. It applies 623 poses across two cycles, rejects six duplicates/stale messages and removes both roots. Python receipt-to-readback confirmation averages 20.5641 ms, P95 34.1381 ms, max 61.4005 ms. This is not full input-to-visible latency or a scenery commit.
+118 uses a reconnecting worker with retained pending requests, monotonic request/message IDs and session/role checks. Transport retry and application ACK are separate layers: replaying either must not repeat a verified game operation. Expected broken-pipe conditions trigger reconciliation rather than permanently poisoning fatal-error state. Bounded buffers and copied worker data remain required; game APIs stay on the game thread.
 
-105's partial-overlap result and long B-origin Create wait show that safe durable commits during a local ordinary preview remain separate work. 107's planned simultaneous bidirectional visual streams do not yet have runtime results.
+118 preserves in-memory state because games/Python remain alive. Rebuilding after a lease holder exits is **119, prepared/unverified**. Old native preview tokens must not cross process lifetimes.
 
 ## Remaining engineering risks and work
 
-- Execute 107 and test preview disconnect cleanup, newer-generation protection, echo suppression and sustained bounded load.
-- Resolve remote durable commits versus an active local undo preview; define same-object conflict authority and multiplayer Undo ownership.
-- Implement authenticated remote companion networking; local pipes are same-machine only.
-- Integrate automatic durable metadata/checkpoints, uncertain crash outcomes and repair. Controlled save/restart tests do not establish arbitrary-crash exactly-once.
-- Finalize lobby/baseline transfer/loading/saving UX after architecture decisions; 085 is a local UI proof.
-- Expand resources, rotation/scale/properties/groups and presented-frame profiling.
-- Investigate the recurring exit crash with isolated controls. Successful in-test completion is not proof of crash-free shutdown.
-- Preserve evidence qualifications: retained 087 native/Python results do not form an all-participant pass; 101 has no observed overlap and 105 only partial phase overlap.
+- Execute 119 lease-holder client restart against an explicitly authorized matching saved baseline; reconcile mappings/status and invalidate stale authority.
+- Integrate durable metadata/save checkpoints; resolve ambiguous commit outcomes, mismatched saves, repair, late join and tombstone/history retention.
+- Test authenticated/encrypted networking across two computers; Named Pipes are local only.
+- Define collaborative Undo/rebasing after another actor's edit. Counteractions are not shared native-stack restoration.
+- Broaden tools/resources/scale/properties/groups, queue/backpressure/failure combinations and long soaks.
+- Revisit admission, baseline transfer, Host-controlled saving, packaging and the archived 085 UI.
+- Isolate the reported exit crash. Own logging cannot capture all pre-load failures or replace crash dumps.
+- Measure presented frames separately from readbacks/Advance spacing.
 
-No shipped internet netcode, arbitrary-crash exactly-once or full-park simulation synchronization is claimed.
+Kepler remains set aside because of observed waits; its internal pacing mechanism is unproven. The own logger is diagnostic output, not a full interactive debugger. No released internet netcode, arbitrary-crash exactly-once or full simulation synchronization is claimed.

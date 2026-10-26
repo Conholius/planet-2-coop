@@ -1,8 +1,8 @@
 # Planet Coaster 2 — Real-Time Co-op Research
 
-> **Project status — 2026-10-25, completed diagnostics through 106; 107 prepared:** Our own DLL, local Named Pipes and external Python now carry manual Create/Move/Delete and live-session Undo/Redo, controlled recovery and edits in both directions. Diagnostic 106 also passed A-to-B live visual previews while B kept its own preview active. **Local diagnostic prototype, not released internet co-op.** Simultaneous bidirectional previews in 107 are not yet tested.
+> **Project status — 2026-10-26, runtime evidence through 118; 119 prepared:** Own DLL, Named Pipes and external Python now support bidirectional live previews, manual scenery/history effects, separate-token commits during active own previews, shared-object leases/conflicts and controlled pipe recovery without duplicate actions. **Local diagnostic prototype, not a released internet alpha.**
 
-We are investigating how two players might build in the same **Planet Coaster 2** park in real time. The current scope is supported scenery: confirmed changes, logical object mappings, guarded application and recovery. Next priorities are simultaneous bidirectional previews (107), safe interaction between local previews and remote committed actions, and a secured remote companion connection. Internet play, a host/join lobby and automatic general recovery are not yet verified. Guests, rides, terrain, economy and full simulation synchronization remain outside the initial scope.
+We are investigating how two players might build in the same **Planet Coaster 2** park in real time. The current scope is supported scenery: confirmed changes, logical object mappings, guarded application and recovery. Next priorities are restarting a client while it holds an object lease (119), durable state reconciliation, and a secured remote companion connection. Internet play, a host/join lobby and automatic general recovery are not yet verified. Guests, rides, terrain, economy and full simulation synchronization remain outside the initial scope.
 
 ## Progress at a glance
 
@@ -23,8 +23,10 @@ We are investigating how two players might build in the same **Planet Coaster 2*
 | Registry and performance | **Passed:** synthetic minimal/full registry tests to 100,000 entries (066), real-object queries/moves with 2,701 rocks (067/068). |
 | Manual scenery over own transport | **091–094 passed:** manual Create/Move/Delete and live-session Undo/Redo; verified effects and unchanged duplicate skips. |
 | Pipe and companion recovery | **095–102:** lost confirmations, real pipe cuts, 18 companion restarts, controlled saved Guest restart and ordered catch-up; 102 establishes real overlap. |
-| Bidirectional edits | **103/104 passed:** Guest-origin edits, separate logical objects, duplicate/own-echo suppression. 105 converges but has only partial phase overlap and a preview-related application wait. |
-| Live remote preview | **106LIVE2 passed A→B:** 623 applied poses across two cycles; B's own preview stays active. **107 bidirectional test is prepared, not verified.** |
+| Bidirectional edits | **103/104, 112–115:** manual supported effects/history and live dragging with receiver preview protection. **117:** peer-created objects editable under versioned leases; Move/Delete conflicts rejected before mutation. |
+| Live remote preview | **106/107 passed:** independent A→B then bidirectional streams, generations, duplicate/old/echo guards and cleanup. **110/111:** visual previews combined with committed placements. |
+| Independent commits and real overlap | **108–111 passed:** separate native preview tokens preserve own previews and committed remote parts after ESC. 111 coordinated automatic confirmations overlap locally in three of four rounds and remotely in all four. |
+| Locked-edit recovery | **118 passed:** held lease survives pipe loss; conflicting access denied; lost application ACK retried without a second effect. **119 client restart while holding a lease is prepared only.** |
 | Main-menu integration | **085 local UI proof:** persistent Koop entry and 20 open/close cycles; real lobby/session creation remains unimplemented. |
 | Catalogue lookup | **Targeted queries passed (070):** avoids the 7,263-row materialization measured separately in 069. |
 | Kepler decision | **082/083:** repeated native requests develop roughly one-second waits; spacing and a quiet pause affect them. Set aside as the preferred transport; the exact internal limiter remains unknown. |
@@ -37,7 +39,7 @@ The successful 005/006 logs came from a **copied test installation launched outs
 
 - **[Documentation guide](docs/README.md)** — a map of the project by topic.
 - **[Current research status](docs/research/STATUS.md)** — concise verified findings, limitations and next milestone.
-- **[Runtime tests (005–106, 107 pending)](docs/testing/RUNTIME_TESTS.md)** — what was actually tested, failures and controls.
+- **[Runtime tests (through 118, 119 prepared)](docs/testing/RUNTIME_TESTS.md)** — what was actually tested, failures and controls.
 - **[Scenery placement and undo](docs/placement/README.md)** — the path toward creating a durable park object.
 - **[Sandboxie test setup](docs/ISOLATED-INSTALLATION.md)** — separate host/guest boxes, token compatibility and isolation caveats.
 - **[Prototype plan](docs/prototype/PLAN.md)** — acceptance criteria for one replicated scenery part.
@@ -48,7 +50,7 @@ For historical experiments and traceability: [research log](docs/research/LOG.md
 
 Our component now uses the scenery hierarchy, create/edit/destroy operations, completed previews and single commits. Creation, movement and deletion were checked after local save/manual reload. Two identical rocks can be addressed independently. Commands reject tested ordering errors and conflicting ID reuse. See the [007–034 diagnostic ledger](docs/research/DIAGNOSTICS_007_034.md).
 
-Diagnostic 030 matched canonical states without networking. The later 038 repeat and 071–082 now establish simultaneous local clients, scripted replicated operations and one ordinary confirmed host placement. [Native HTTP transport](docs/networking/TRANSPORT.md) works with a ready Kepler user context; [latency profiling](docs/networking/HTTP_LATENCY_080_082.md) and 083 record native-request delays. [The DLL/Named-Pipe bridge](docs/networking/NATIVE_BRIDGE.md) now carries actual manual scenery effects, controlled recovery and bidirectional edits. The [085–107 evidence ledger](docs/research/DIAGNOSTICS_085_107.md) records the results, including 105's partial-overlap limitation and 106's successful independent visual proxy. Remote clients, same-object conflict ownership and automatic durable recovery remain open.
+Diagnostic 030 matched canonical states without networking. The later 038 repeat and 071–082 now establish simultaneous local clients, scripted replicated operations and one ordinary confirmed host placement. [Native HTTP transport](docs/networking/TRANSPORT.md) works with a ready Kepler user context; [latency profiling](docs/networking/HTTP_LATENCY_080_082.md) and 083 record native-request delays. [The DLL/Named-Pipe bridge](docs/networking/NATIVE_BRIDGE.md) now carries actual manual scenery effects, controlled recovery and bidirectional edits. The [085–107 evidence ledger](docs/research/DIAGNOSTICS_085_107.md) preserves the earlier native results; the [107–119 ledger](docs/research/DIAGNOSTICS_107_119.md) records bidirectional previews, independent commits, actual overlap, shared-object conflicts and locked-edit pipe recovery. Remote computers, client restart while holding a lease and automatic durable recovery remain open.
 
 Read the [050–068 evidence ledger](docs/research/DIAGNOSTICS_050_068.md), [recovery/history findings](docs/networking/RECOVERY_AND_HISTORY.md), [035–049 evidence ledger](docs/research/DIAGNOSTICS_035_049.md), [transport/editor measurements](docs/networking/BENCHMARKS.md) and [proposed HTTP synchronization design](docs/networking/HTTP_SYNC_DESIGN.md). The complete product architecture remains proposed; the [069–082 ledger](docs/research/DIAGNOSTICS_069_082.md) preserves HTTP history and the [085–107 evidence ledger](docs/research/DIAGNOSTICS_085_107.md) documents the newer native path.
 

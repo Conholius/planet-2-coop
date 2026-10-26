@@ -1,5 +1,11 @@
 # Park save/load and component serialization
 
+## Current update — 2026-10-26, through 118; 119 prepared
+
+The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
+
+Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
+
 ## ParkLoadSaveManager
 
 `ParkLoadSaveManager` orchestrates park saves; the active world's `worldserialisation` interface performs the requested serialization. Observed methods include `RequestSaveWorldToFile`, `HasSaveToFileCompleted`, `RequestSaveTerrainToFile`, `RequestSaveBlueprintToFile`, `LoadWorldFromFile`, `LoadTerrainFromFile` and `LoadBlueprintFromFile` (availability and invocation paths vary).

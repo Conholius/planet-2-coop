@@ -6,7 +6,7 @@ The project is research-first. Read **current results** before **historical inve
 
 ## Current update
 
-[085–107 ledger](research/DIAGNOSTICS_085_107.md): manual native scenery/history, pipe and companion recovery, saved-Guest catch-up, bidirectional edits, persistent local UI and successful A-to-B previews through 106. **107 is prepared/unverified.** This supersedes earlier pending-Step-12 statements.
+[107–119 ledger](research/DIAGNOSTICS_107_119.md): reviewed results through 118, including bidirectional previews, independent-token placement, live Moves, history counteractions, shared-object conflicts and locked-edit pipe recovery. **119 is prepared only.** [085–107](research/DIAGNOSTICS_085_107.md) retains earlier native/lobby/recovery history.
 
 ## Start here
 
@@ -30,10 +30,10 @@ The project is research-first. Read **current results** before **historical inve
 | Save/load and object persistence | [Serialization](serialization/README.md) | Local persistence and controlled saved-checkpoint client reload |
 | Recovery and Undo history | [Recovery findings](networking/RECOVERY_AND_HISTORY.md) | ACK/reset/server recovery, checkpoint reload, native-history loss and Move counteractions |
 | Dependencies, bytecode and tooling | [Modding](modding/README.md) | Source research + limited runtime loading |
-| Current local transport | [Own DLL and companion](networking/NATIVE_BRIDGE.md) | Direct strings, own logging, scenery effects/recovery and A-to-B live previews passed |
+| Current local transport | [Own DLL and companion](networking/NATIVE_BRIDGE.md) | Direct strings, own logging, bidirectional previews, supported editing and locked-edit pipe recovery |
 | Historical command transport | [Native HTTP](networking/TRANSPORT.md) | Earlier GET/text and scenery/recovery tests; Kepler no longer preferred |
 | Synchronization design | [Host/relay protocol](networking/HTTP_SYNC_DESIGN.md) | Proposed complete architecture; scripted two-client and single manual Create paths verified |
-| Performance | [Measurements](networking/BENCHMARKS.md) | HTTP, grouped edits, registry/query profiling and native/Python controls and preview measurements through 106 |
+| Performance | [Measurements](networking/BENCHMARKS.md) | HTTP, grouped edits, registry/query profiling and native/Python controls and preview/editor/recovery measurements through 118 |
 | Two-client acceptance criteria | [Prototype plan](prototype/PLAN.md) | Completed diagnostic gates and remaining product work |
 
 ## Evidence and chronology
@@ -42,7 +42,7 @@ The project is research-first. Read **current results** before **historical inve
 - [**EVIDENCE.md**](research/EVIDENCE.md): where each claim comes from and what it does **not** prove.
 - [**LOG.md**](research/LOG.md): chronological experiments, including failures and superseded hypotheses.
 - [**OPEN_QUESTIONS.md**](research/OPEN_QUESTIONS.md): active blockers, in priority order.
-- [**Runtime diagnostics**](testing/RUNTIME_TESTS.md): checkpoints through 106, with 107 pending; ledgers [007–034](research/DIAGNOSTICS_007_034.md), [035–049](research/DIAGNOSTICS_035_049.md), [050–068](research/DIAGNOSTICS_050_068.md) [069–082](research/DIAGNOSTICS_069_082.md) [083–084](research/DIAGNOSTICS_083_084.md) and [085–107](research/DIAGNOSTICS_085_107.md).
+- [**Runtime diagnostics**](testing/RUNTIME_TESTS.md): results through 118, with 119 prepared; ledgers [007–034](research/DIAGNOSTICS_007_034.md), [035–049](research/DIAGNOSTICS_035_049.md), [050–068](research/DIAGNOSTICS_050_068.md) [069–082](research/DIAGNOSTICS_069_082.md) [083–084](research/DIAGNOSTICS_083_084.md) [085–107](research/DIAGNOSTICS_085_107.md) and [107–119](research/DIAGNOSTICS_107_119.md).
 
 ## Ground rules
 

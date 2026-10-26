@@ -1,5 +1,32 @@
 # Transport and editor measurements
 
+## Current measurements — reviewed 2026-10-26
+
+[Detailed evidence and boundaries](../research/DIAGNOSTICS_107_119.md). All values are local owner-run diagnostics, without ACSEDebug; they are not input-to-displayed-frame or WAN latency.
+
+| Diagnostic / interval | Result |
+| --- | --- |
+| 107 Python pose receipt → receiver readback ACK, A→B | 1,014 updates; mean 20.4521 ms, P95 33.4908 ms, maximum 66.9417 ms |
+| 107 same interval, B→A | 1,372 updates; mean 21.4729 ms, P95 35.1725 ms, maximum 49.0119 ms |
+| 109 remote preparation→verified application overlap | 51.1213 ms; remote commit overlap 10.3300 ms; local manual commits did not overlap |
+| 110 Python confirmed Create receipt → verified commit ACK | Four placements: 170.80–240.03 ms; no cross-direction overlap observed |
+| 111 coordinated automatic local commits | Overlap in three of four rounds; remote application/commit overlap in all four |
+| 113 Python live pose receipt → receiver readback ACK | Cycle means about 33.1–34.4 ms; maximum about 115.2 ms; source sampling interval 100 ms is additional |
+| 114 verified-source Delete receipt → receiver absence ACK | 97.4015 ms; B's local application/verification 65.7522 ms |
+| 115 verified-source history receipt → receiver state ACK | Nine steps, 80.37–114.34 ms |
+| 116 pre-failure receipt → receiver state ACK | 101 samples, mean 83.3926 ms / max 119.4813 ms; **run incomplete**, no final audit |
+| 117 command receipt → receiver state ACK | Eleven commands, mean 85.3740 ms / max 113.0501 ms; lock acquisition separate |
+| 117 Lua-observed lock reply | A mean about 25.63 ms, B 26.13 ms; maxima about 31.61/36.17 ms |
+| 118 B local Move application/verification | 79.1026 ms |
+| 118 receipt → confirmed application ACK | 2,124.3879 ms, **includes an intentionally injected two-second interruption** |
+| 118 measured diagnostic Advance execution, A / B | Mean 0.008373 / 0.017165 ms; max 0.3930 / 0.5625 ms |
+| 118 maximum observed Advance spacing, A / B | 327.5281 / 254.9402 ms; no unique cause established |
+
+118 worker exchange maxima include connection-handshake waits (A about 14.25 seconds while conflict testing/reconnect gating was pending; B about 2.02 seconds during the injected gate). They are not steady-state packet latency. Advances continued during recovery.
+
+Separate initialization, sampling, callback work, worker I/O, game-operation completion, readback and whole-frame measurements. Token completion or transform readback is not a captured rendered frame. Earlier sections retain their historical boundaries.
+
+
 ## Current update — 2026-10-25, through 106; 107 pending
 
 The [085–107 evidence ledger](../research/DIAGNOSTICS_085_107.md) supersedes the earlier next-step/pending statements below: manual native-bridge Create/Move/Delete and Undo/Redo, controlled pipe/Python/checkpoint recovery, reverse/bidirectional separate-object edits and A-to-B independent previews now have runtime evidence. 105 has only partial phase overlap; 107 simultaneous bidirectional preview code is supplied but untested. Earlier sections retain their dated evidence scope.

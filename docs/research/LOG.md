@@ -136,3 +136,16 @@ See [069–082 ledger](DIAGNOSTICS_069_082.md) and [080–082 latency analysis](
 - Reconciled overview, current status, evidence/runtime indexes, roadmap and native transport/recovery/benchmark/placement notes. Published only original research summaries; no private logs, proprietary source/assets/binaries, session/save IDs or personal paths.
 
 [085–107 ledger](DIAGNOSTICS_085_107.md).
+
+## 2026-10-26 — Independent previews, shared leases and pipe recovery (107–118)
+
+- Reviewed matching native/Python runs; [107–119 ledger](DIAGNOSTICS_107_119.md) records private-file anchors and separates corrected successes from failed revisions.
+- 107 passed bidirectional visual proxies/generations. 108/109 passed separate-token remote placement during own preview and retention after ESC; 109 measured remote overlap, not simultaneous local input.
+- 110 Test 4 combined previews/manual placement. 111 automatically confirmed prepared ordinary placements: local commit overlap in three of four rounds, remote application/commit overlap in all four.
+- 112/113 passed confirmed/live Moves, stable parts and Commit/Cancel with protected own previews. 114 shortened A→B Delete passed. 115 passed nine source history effects via receiver counteractions, not receiver native-history reconstruction.
+- 116's 101-command run ended incomplete at its own-object restriction. 117 Test 5 passed cross-creator editing, Move/Delete conflict no-ops, ESC release, old Create rejection, matching registers and no locks.
+- Move capture correction: resolve the standalone selection from InfoPopUpComponent:GetOpenPopUp().partID/entityID rather than requiring GetEditorContext on a generic current mode; earlier failures preceded lock acquisition.
+- 118 passed pipe loss during A's held Move and after B applied but before its ACK was accepted. Leases stayed protected, A reconciled/cancelled, B did not repeat the Move, own preview stayed active, all participants completed with zero worker errors.
+- 118 B application verification: 79.1026 ms; 2,124.3879-ms confirmation includes the deliberate two-second outage. Handshake waits and Advance gaps are not ordinary packet latency.
+- **119 prepared only:** restart the lease holder while the other game/Python live; reconcile baseline/mappings/status, retire old authority and reject stale work. No implementation/run or park-save authorization recorded.
+- Documentation-only update; no installation, binary, raw log or save changed/distributed. No WAN, production readiness or atomic crash-safe persistence claim.

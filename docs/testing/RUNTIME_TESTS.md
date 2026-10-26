@@ -1,25 +1,25 @@
 # Runtime tests — PC2 lifecycle, scenery and transport capability
 
-## Latest evidence — 2026-10-25
+## Latest evidence — 2026-10-26
 
-[085–107 ledger](../research/DIAGNOSTICS_085_107.md) records the retained native/Python source anchors, successful corrections and limits. Runtime coverage now reaches 106; **107 is code supplied, no reviewed run**. This supersedes older pending Step 12 statements below.
+[107–119 ledger](../research/DIAGNOSTICS_107_119.md) records matched runtime evidence through 118; **119 is prepared only**. Earlier ledgers retain their dated scope.
 
 | Area | Current evidence |
 | --- | --- |
-| Local menu | 085 retained 20 opens/closes, both completion markers; no real session |
-| One-client hardening | 086, 088–090 pass retained message/framing/numeric tests; retained 087 native file fails first connection despite a completed Python file |
-| Native scenery/history | 091–094 matched A/B/Python completions; actual manual Create/Move/Delete and Undo/Redo, duplicate checks |
-| Recovery | 095/096 lost confirmations/pipe cuts; 097 18 Python restarts with supervisor completion; 098/099 saved-Guest restore/offline catch-up |
-| Catch-up overlap | 100 staged; 101 completes without observed overlap; 102 actual overlap and ordered catch-up through sequence 51 |
-| Bidirectional edits | 103 reverse, 104 separate objects both directions; 105 all effects complete but only partial phase overlap |
-| Independent preview | 106LIVE2: 623 applied poses, two cycles, own B preview retained, six rejects, user visual confirmations, both native/Lua pairs and Python complete |
-| Next test | 107 simultaneous bidirectional previews, not yet verified |
+| Bidirectional live visual previews | 107 corrected repeat: independent generations, own previews, 1,014/1,372 applied updates, old/duplicate/echo guards and cleanup |
+| Independent remote commits | 108/109: separate native tokens, own preview retained, remote parts survive own ESC; 109 remote overlap, no local manual overlap |
+| Preview + placement integration | 110 Test 4 passes; 111 automatic prepared confirmations prove local commit overlap in three of four rounds, remote overlap in all four |
+| Move/live drag | 112 confirmed Moves; 113 Test 3 all four Commit/Cancel cycles with stable mapped parts and protected own previews |
+| Delete/history under own preview | 114 shortened A→B Delete; 115 nine source history steps via receiver counteractions, not receiver native history |
+| Free/shared editing | 116 incomplete at own-object guard; 117 Test 5 cross-creator edits, Move/Delete conflict no-ops, ESC release, matching registries and no locks |
+| Pipe loss during locked work | 118 both cases pass, pending request/ACK replay without duplicate commits, receiver preview retained |
+| Next test | 119 dead lease-holder restart; no implementation/run or save authorization certified |
 
-Private logs remain private. Matching summaries, actual world/readback checks and visual observations are distinct evidence. No production/internet or arbitrary-crash exactly-once claim follows.
+Own DLL/logger and external Python work without ACSEDebug; ACSE remains the loader. Controlled recovery does not establish native commit/status/save atomicity or arbitrary-crash exactly-once. No WAN or released-alpha claim follows. Raw logs and private paths remain private.
 
 [← Documentation guide](../README.md) · [Current status](../research/STATUS.md) · [Scenery research](../placement/README.md)
 
-**Updated 2026-10-24, reviewed through 084 Step 11 and the own-logger test. Step 12 remains prepared/unverified.** This page separates experiments that **ran in PC2**, tests that were **not run**, and historical failures. Log excerpts here are short manually transcribed observations; **complete private logs are not committed**.
+**Historical record below: reviewed through 084 Step 11 at its original cutoff. Current evidence through 118 is indexed above; old pending statements are superseded within the newer ledgers' explicit scope.** This page separates experiments that **ran in PC2**, tests that were **not run**, and historical failures. Log excerpts here are short manually transcribed observations; **complete private logs are not committed**.
 
 ## Latest completed gates — 083/084
 

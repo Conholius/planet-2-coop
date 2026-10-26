@@ -1,6 +1,6 @@
 # Diagnostics 085–107: native scenery, recovery and live previews
 
-**Updated 2026-10-25.** Completed retained runs through 106 are distinguished below from failed/limited runs. **107 code was supplied in chat; no runtime result has been reviewed.**
+**Historical cutoff: 2026-10-25, through 106. Updated cross-reference 2026-10-26:** the [107–119 ledger](DIAGNOSTICS_107_119.md) now records 107's successful repeat and results through 118. The dated evidence for 085–106 remains below.
 
 [Current status](STATUS.md) · [Native bridge](../networking/NATIVE_BRIDGE.md) · [Earlier 083–084 ledger](DIAGNOSTICS_083_084.md)
 
@@ -115,22 +115,14 @@ Both cycles have visualConfirmed=true from the user's explicit visual checks, ma
 
 The first interval excludes A's input/sampling delay and Python receipt before the start, and ends at a readback acknowledgement rather than a presented frame. It is not full input-to-visible latency or directly comparable to old committed-action confirmations. Maximum observed Advance gaps were 269.8039 ms on A and 259.6835 ms on B; their cause is not established by these summaries. Fast callbacks do not prove absence of stutter.
 
-## 107: supplied code, no reviewed runtime result
+## 107: later runtime result supersedes the earlier pending status
 
-The next diagnostic sends independent preview streams in **both directions**, with external Python and own logging, without ACSEDebug. It is designed to test:
-
-1. Simultaneous active A1/B1 preview streams with changing poses from each.
-2. Ending A1 while B1 continues, restarting A2 while B1 is active, then ending/restarting B.
-3. One remote root per client, own previews retained, generation/sequence/session/origin separation.
-4. Duplicate pose rejection, old pose/end rejection while a newer ghost exists, own-echo suppression and cleanup.
-5. Ongoing progress with timing output only at the end.
-
-**Status: prepared/unverified.** No 107 completion, simultaneous visual independence, feedback safety or performance claim is made. Its planned latest-pose coalescing may skip intermediate preview samples; that policy is appropriate only to ephemeral visual state, not to the committed command history.
+At the original 2026-10-25 cutoff, code had been supplied without a reviewed run. The corrected repeat has since passed bidirectional previews and independent generations; see the [107–119 ledger](DIAGNOSTICS_107_119.md). This older ledger retains the evidence scope of 085–106 above.
 
 ## Architecture consequences and remaining limits
 
 **Derived:** maintain two distinct flows: immutable ordered committed actions with application proofs and recovery records, and disposable latest-pose previews with generations/sequences and explicit cleanup. A preview must never silently become a committed park object, create a save entry or publish itself as a local user action.
 
-The local bridge now carries actual supported edits and recovery traffic, not just harmless messages. Still open: simultaneous conflicting edits to the **same** object; multiplayer Undo ownership; automatic durable metadata in a matching save; unknown/crash outcomes; remote authenticated transport; full host/join and park transfer; multiple resources, scale/properties/groups; preview disconnect cleanup and sustained load; crash-free game exit.
+The local bridge now carries actual supported edits and recovery traffic, not just harmless messages. At this ledger's original cutoff, open issues included simultaneous conflicting edits to the **same** object and multiplayer Undo ownership. Later 117/118 establish the specific shared-object conflict/pipe-recovery cases in the [new ledger](DIAGNOSTICS_107_119.md); general history rebasing remains open. Other open work includes automatic durable metadata in a matching save; unknown/crash outcomes; remote authenticated transport; full host/join and park transfer; multiple resources, scale/properties/groups; preview disconnect cleanup and sustained load; crash-free game exit.
 
 No released playable internet co-op, full simulation synchronization or general exactly-once crash guarantee is claimed.

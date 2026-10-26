@@ -1,8 +1,10 @@
 # Scenery placement and undo — critical research area
 
-## Current update — 2026-10-25, through 106; 107 pending
+## Current update — 2026-10-26, through 118; 119 prepared
 
-The [085–107 evidence ledger](../research/DIAGNOSTICS_085_107.md) supersedes the earlier next-step/pending statements below: manual native-bridge Create/Move/Delete and Undo/Redo, controlled pipe/Python/checkpoint recovery, reverse/bidirectional separate-object edits and A-to-B independent previews now have runtime evidence. 105 has only partial phase overlap; 107 simultaneous bidirectional preview code is supplied but untested. Earlier sections retain their dated evidence scope.
+The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
+
+Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
 
 ## Relevant API symbols from the inspected PC2 API inventory
 

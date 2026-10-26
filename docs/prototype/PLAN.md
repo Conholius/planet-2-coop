@@ -1,29 +1,26 @@
 # Scenery co-op prototype: completed gates and next work
 
-**Updated 2026-10-25.** [Status](../research/STATUS.md) · [085–107 ledger](../research/DIAGNOSTICS_085_107.md)
+**Updated 2026-10-26.** [Status](../research/STATUS.md) · [107–119 ledger](../research/DIAGNOSTICS_107_119.md)
 
 ## Achieved within local diagnostic scope
 
-Own DLL/Named Pipes/external Python carry manual Create/Move/Delete and live-session Undo/Redo without ACSEDebug. Lost confirmations, pipe breaks, companion restarts and controlled saved-Guest catch-up pass. Separate objects can originate from either client with tested duplicate/echo suppression. 102 demonstrates actual overlapping catch-up; 105 achieves final convergence but only partial phase overlap.
+Own DLL/Named Pipes/external Python carry supported manual Create/Move/Delete and history effects without ACSEDebug. 095–102 establish specific recovery/catch-up paths; 107 bidirectional live visual previews; 108–111 separate-token remote placement while own previews stay active, including measured overlap; 112–115 Move/live-drag/cancel/Delete/history under preview protection; 117 shared-object leases/conflicts and matching final registries; 118 held-edit/lost-ACK pipe recovery without duplicate effects.
 
-106 adds an independent A-to-B visual rock/ring while B moves its own preview. This is ephemeral rendering, not a durable park commit. 085 supplies a deferred local menu/dialog proof.
+111 uses automatically confirmed prepared placements; three of four local commit rounds overlap. 116 is an incomplete own-object-restriction run, superseded in shared-object scope by 117. 085 remains an archived local UI proof.
 
-These are owner-run diagnostic gates, not a shipped multiplayer mod. The native interface is build-profile specific; remote security, conflict ownership, automatic persistence and full simulation remain open.
+These are owner-run local diagnostic gates. ACSE remains the loader, the native ABI is executable-profile-specific, and no released internet alpha is claimed.
 
 ## Next acceptance gates
 
-1. **107, prepared/unverified:** simultaneous A↔B previews with two generations each, one ghost per receiver, continuous independent own previews, stale/duplicate/echo rejection and verified cleanup.
-2. Remote committed edits while the recipient's ordinary preview remains active: prove safe completion or a clear bounded defer policy. Do not confuse ghost rendering with a solved shared undo-preview path.
-3. Same-object conflicts, origin authority/revisions and multiplayer Undo ownership.
-4. Authenticated remote companion connection across two computers, failure/backpressure checks and reproducible install/start/stop.
-5. Matching save + durable registry/status/tombstone recovery, including uncertain commit outcomes and repair.
-6. Host/join admission, baseline transfer and Host-controlled save UX; revisit the archived 085 UI after these decisions.
-7. Broader resources/properties, soak/GC tests, actual rendered-frame measurements and isolated exit-crash diagnosis.
+1. **119, prepared only:** restart the client holding a lease, reconcile a matching saved baseline and command/object state, retire stale authority and prove a fresh operation plus late-message rejection. Save authorization is a separate prerequisite; no 119 park save has occurred.
+2. Authenticated/encrypted companion communication on two computers, reconnect/backpressure/admission tests.
+3. Durable save/registry/status/tombstone integration and reconciliation of uncertain native commit outcomes; mismatched-save repair and late join.
+4. Collaborative Undo policy, revision changes by other actors, broader resources/scale/properties/groups and supported tool coverage.
+5. Host/join/baseline transfer/load/save workflow; finalize 085 menu integration after architecture decisions.
+6. Reproducible packaging, automated regressions, long soaks, presented-frame profiling and exit-crash isolation.
 
 ## Evidence rules
 
-Require matching sessions and all participant completions; inspect counters and world checks rather than completion labels alone. 087's retained mismatched result pair is not certified. 101's completion is not overlap; 105's completion is not all-phase overlap.
+Require matching participant runs, world checks and measured overlap intervals; completion labels alone are insufficient. Preserve historical failures as dated evidence.
 
-Keep committed commands lossless and ordered; previews may coalesce to the latest valid pose. A worker never invokes Lua/game APIs. No persistent-placement claim follows from InstantiatePrefab, and no arbitrary-crash exactly-once claim follows from controlled checkpoint tests.
-
-No released playable internet co-op or full-park simulation is claimed.
+Committed actions remain lossless, immutable and ordered; disposable preview poses may coalesce. A worker never invokes Lua/game APIs. Native tokens/local IDs are not cross-process network identities. No persistent-placement claim follows from InstantiatePrefab and no arbitrary-crash guarantee follows from completed checkpoints or live-process pipe recovery.
