@@ -1,25 +1,27 @@
 # Runtime tests — PC2 lifecycle, scenery and transport capability
 
-## Latest evidence — 2026-10-26
+## Latest evidence — reviewed 2026-10-30
 
-[107–119 ledger](../research/DIAGNOSTICS_107_119.md) records matched runtime evidence through 118; **119 is prepared only**. Earlier ledgers retain their dated scope.
+[119–130 ledger](../research/DIAGNOSTICS_119_130.md) and [Build Together lobby](../networking/BUILD_TOGETHER_LOBBY.md) supersede the former 119-prepared/current-no-lobby statements. The [internet plan](../networking/INTERNET_PLAN.md) is preparation only.
 
-| Area | Current evidence |
+| Area | Current evidence and limit |
 | --- | --- |
-| Bidirectional live visual previews | 107 corrected repeat: independent generations, own previews, 1,014/1,372 applied updates, old/duplicate/echo guards and cleanup |
-| Independent remote commits | 108/109: separate native tokens, own preview retained, remote parts survive own ESC; 109 remote overlap, no local manual overlap |
-| Preview + placement integration | 110 Test 4 passes; 111 automatic prepared confirmations prove local commit overlap in three of four rounds, remote overlap in all four |
-| Move/live drag | 112 confirmed Moves; 113 Test 3 all four Commit/Cancel cycles with stable mapped parts and protected own previews |
-| Delete/history under own preview | 114 shortened A→B Delete; 115 nine source history steps via receiver counteractions, not receiver native history |
-| Free/shared editing | 116 incomplete at own-object guard; 117 Test 5 cross-creator edits, Move/Delete conflict no-ops, ESC release, matching registries and no locks |
-| Pipe loss during locked work | 118 both cases pass, pending request/ACK replay without duplicate commits, receiver preview retained |
-| Next test | 119 dead lease-holder restart; no implementation/run or save authorization certified |
+| Controlled restarts | 119 game restart from matching checkpoint; 120 two Python restarts; 121 combined restart, dead incarnation retirement and stale lease rejection; all matched participants complete. Not arbitrary crash atomicity. |
+| Multiple resources/properties | 122 seven resources/19 commands; final 123 four resources/18 commands with actual scale, semantic RGB/reset and strict named-channel checks. |
+| Grid groups | 124/125 walls and whole-group transforms; 126 Split/scripted join and editor grid; 127 actual manual UI Merge. |
+| Group history | 128 Test 5: 18 commands, eight Split/Merge source history proofs, complete initialized editor grid; receiver native history equivalence not claimed. |
+| Concurrent/free building | Completed 129 parallel/conflict/history variants; early retained free variant failed. Final 130: 43 settled mixed-building commands, 86 duplicate records, no open locks/errors, all complete. |
+| Shared DLC | 7,263 catalogue entries each; 5,282 jointly allowed, 1,981 excluded; both filters before free building. Visibility is not entitlement. |
+| Private lobby | Either A or B as host; invalid/consumed invite rejection, explicit reject/approve, single guest, guest DLC after approval, readiness and coordinated local template loading. |
+| UI/startup | English stacked in-menu panel, game-module readiness fix. Five-button host view measured inside; three false transition samples retained; owner visually accepts appearance. Correct conditional code hints in assets; visible strings not transcribed in logs. |
+| Latest menu-only finish | Both Lua/native pairs, Python and state complete; no game changes/saves. Separate earlier completed park/build integration. |
+| Internet | Direct IPv4/IPv6 TCP/TLS chosen; not implemented or tested across PCs. Future relay optional, not provided. |
 
-Own DLL/logger and external Python work without ACSEDebug; ACSE remains the loader. Controlled recovery does not establish native commit/status/save atomicity or arbitrary-crash exactly-once. No WAN or released-alpha claim follows. Raw logs and private paths remain private.
+These are owner-run game diagnostics plus separately identified offline tests, not an automated full-game/WAN certification. ACSE remains the loader; ACSEDebug is absent from current own-logger/lobby runs. Private logs, sessions, saves and game assets remain unpublished. Historical sections below preserve their dated evidence boundaries.
 
 [← Documentation guide](../README.md) · [Current status](../research/STATUS.md) · [Scenery research](../placement/README.md)
 
-**Historical record below: reviewed through 084 Step 11 at its original cutoff. Current evidence through 118 is indexed above; old pending statements are superseded within the newer ledgers' explicit scope.** This page separates experiments that **ran in PC2**, tests that were **not run**, and historical failures. Log excerpts here are short manually transcribed observations; **complete private logs are not committed**.
+**Historical record below: reviewed through 084 Step 11 at its original cutoff. Current evidence through 130 and the local lobby is indexed above; old pending statements are superseded within the newer ledgers' explicit scope.** This page separates experiments that **ran in PC2**, tests that were **not run**, and historical failures. Log excerpts here are short manually transcribed observations; **complete private logs are not committed**.
 
 ## Latest completed gates — 083/084
 

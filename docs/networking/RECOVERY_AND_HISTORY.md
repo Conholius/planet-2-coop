@@ -1,10 +1,12 @@
 # Recovery, object identity and undo history
 
-## Current update — 2026-10-26, through 118; 119 prepared
+## Current update — 2026-10-30
 
-The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
+[119–130 ledger](../research/DIAGNOSTICS_119_130.md): corrected 119 recovers a dead lease holder from an existing matching checkpoint with no new save; 120 survives two companion restarts; 121 combines a Guest/Python restart, discards an unconfirmed drag, retires the old incarnation and restores two command records. Matched participants/supervisors complete. Those controlled points do not establish atomic native commit/status/save recovery.
 
-Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
+128 separates remote commit completion from its following undo checkpoint and waits for a fully initialized editor before restoring full grid origin/orientation/cell settings. Later group own-history and mixed-building results are documented separately from native-stack equivalence and arbitrary collaborative rebasing.
+
+The [private lobby](BUILD_TOGETHER_LOBBY.md) now drains both BYE replies before closing its pipes. Its current full game-process restart is not automatically a private-lobby resume. Durable host-save integration, unknown outcomes, mismatched-save repair and internet recovery remain open. Historical evidence below is preserved.
 
 **Evidence through diagnostic 082, reviewed 2026-10-23.** [Two-client ledger](../research/DIAGNOSTICS_069_082.md) [Ledger](../research/DIAGNOSTICS_050_068.md) · [Proposed protocol](HTTP_SYNC_DESIGN.md) · [Serialization](../serialization/README.md)
 

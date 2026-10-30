@@ -1,10 +1,11 @@
 # Park save/load and component serialization
 
-## Current update — 2026-10-26, through 118; 119 prepared
+## Current update — 2026-10-30
 
-The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
+[119–130 ledger](../research/DIAGNOSTICS_119_130.md): corrected 119 reuses an existing authorized matching checkpoint, restores object/command state and retires a dead lease; 121 combines that recovery boundary with a companion restart. No new save in those reviewed resume runs. Neither is an arbitrary-crash-safe custom serialization result.
 
-Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
+[Build Together](../networking/BUILD_TOGETHER_LOBBY.md) now coordinates both clients loading the same tropical sandbox template, with loaded/DLC-filter gates before building. It does not transfer an arbitrary host park or implement final host-controlled saving. Recent lobby tests report zero save calls. An undo Checkpoint is distinct from a park save; grid/history restoration does not imply durable metadata/park atomicity. Older persistence results below remain valid only in their stated scope.
+
 
 ## ParkLoadSaveManager
 

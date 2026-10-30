@@ -1,47 +1,40 @@
 # Open questions and next experiments
 
-**Updated 2026-10-26.** [Status](STATUS.md) · [107–119 evidence](DIAGNOSTICS_107_119.md)
+**Reviewed 2026-10-30.** [Status](STATUS.md) · [119–130 evidence](DIAGNOSTICS_119_130.md) · [Lobby](../networking/BUILD_TOGETHER_LOBBY.md)
 
-## Immediate: restart a lease holder — 119 prepared
+## Immediate: direct internet play on two PCs
 
-118 recovers a live game's pipe and in-memory state. A dead client loses its Lua state, active tool and native preview token; this is a different recovery boundary.
+The owner chose no VPN application and requires both IPv4 and IPv6. [Detailed proposed transport and acceptance gates](../networking/INTERNET_PLAN.md).
 
-Proposed test: keep A/Python alive; stop B while it holds an unconfirmed Move; deny A a conflicting edit; reload a matching B baseline; verify committed world state and resolve local mappings before restoring command status; invalidate the previous process's lease and allow a new operation under a fresh identifier. Replayed old commands/releases must not mutate or unlock newer work.
+- Implement and test Python-to-Python TCP/TLS with verified host identity and private one-guest admission. Remote PIDs are not identities; keep native process/image checks local.
+- Define versioned invitations carrying endpoint/port, server/room identity and a one-time secret; extend the present short-field limit. No lookup/rendezvous service currently exists.
+- Keep local DLL polling independent of WAN RTT. Separate local pipe sessions, remote room binding and application outcomes, including embedded sessions in fragmented payloads.
+- Bound connection attempts, queues, frame/reassembly sizes and timeout behavior. Preserve commands/order/leases under uncertainty; do not blindly replay ambiguous effects.
+- Test reachable IPv4 and IPv6 routes independently. Router port-forwarding support does not guarantee provider-side reachability; a future optional relay can cover some otherwise inaccessible peers.
+- Package required original code portably; current companion imports archived diagnostic bases and developer-specific launch paths. A second PC needs its own game and matching supported native profile, not a copied game distribution.
 
-No implementation/run is certified for 119. A reproducible test is expected to need one new B baseline save before editing, subject to explicit owner authorization. Rebuilding the interactive drag is optional; restoring consistent committed state and resolving ownership are required.
+No WAN runtime test, encrypted remote implementation, automatic port mapping or relay service is certified.
 
-## Preview and editor scope
+## Durability and product flow
 
-107–111 establish bidirectional proxies plus separate-token committed placements; 112–115 establish Move/live drag/cancel/Delete/history application with receiver preview protection. These close the earlier narrow coexistence blocker.
+119–121 close their controlled lease-holder/Python/combined restart cases. They do not establish an atomic transaction across native commit, command record and park save. Unknown crash outcomes, stale/mismatched saves, durable custom metadata, repair, late join and retention/compaction remain open.
 
-Still open: preview cleanup after arbitrary world/process failures, stalled peers, queue overload, long sessions, multiple tools/resources, scale/properties/groups, transparent/nonselectable visualization and presented-frame latency. A prefab visual is not a persistent park object.
+The lobby now implements admission, shared DLC, readiness and common-template loading. Arbitrary host park transfer, final host-controlled saving and permission/repair UX are still unimplemented. A complete game process restart is not automatically a supported resume of the new private lobby.
 
-## Authority and Undo
+## Editing coverage and history
 
-117 proves cross-creator Move/Delete, first-valid-request/versioned leases and tested conflicts; 118 adds two controlled disconnect points. Still open: dead-process ownership retirement, broader stale/late-message combinations, fair admission, authority migration and malicious/unauthorized peers.
+123 properties and 124–130 group work supersede the old broad statement that all scale/color/group support is untested. Remaining scope includes arbitrary resources, all custom grids, blueprints/dependencies, more editor/tool paths, history after another actor changes the same group, and long concurrent sessions.
 
-115 receiver counteractions do not synchronize native history. 117's limited per-actor history/revision policy is not general collaborative Undo rebasing. Define behavior when another actor has changed the same object.
+128 native-history boundary fixes and later own counteraction history do not prove identical native undo stacks or unrestricted collaborative rebasing. Keep all affected group locks, complete editor-grid reconstruction and command identity/version checks explicit.
 
-## Remote transport and product workflow
+The retained early 129-Free failure must remain distinguished from completed 129 stages and later 130 mixed-building evidence. A visible DLC model on an unlicensed peer must never be used as entitlement proof. A remote client ownership declaration is not independently verified Steam licence authentication.
 
-- Implement authentication/encryption and test two computers; Named Pipes are same-machine only.
-- Preserve intended Host session → Guest join → compatible baseline/load → Host-controlled save workflow.
-- 085 proves a local menu/dialog, not admission, park transfer or network lobby; defer polishing until architecture is ready.
-- Package profile-compatible binaries, endpoint permissions, clean startup/shutdown and actionable error handling.
+## UI, measurements and lifecycle
 
-## Durability and lifecycle
+The owner accepts the current English stacked-button layout. Retain the three false transition samples as a measurement caveat, not a new visible defect claim. Literal label/hint rendering is not proven solely by completion flags.
 
-Completed checkpoint tests do not establish an atomic transaction spanning native commit, status journal, application ACK and park save. Unknown crash outcomes, mismatched saves, automatic persistent metadata, repair, late join, history/tombstone compaction and arbitrary shutdown still require evidence.
+The input-startup error is corrected by the game module's readiness promise, distinct from browser engine readiness; delayed-order regression and a successful owner run support that fix. Continue testing control-context/menu cleanup and world transitions under failure.
 
-The recurring game-exit crash remains unisolated. Compare clean/no-mod, ACSE-only and own-DLL lifecycle controls; do not assign a cause from in-test completion. Own logging cannot capture every pre-load crash or replace native crash dumps.
+Separate callback work, startup, scheduling gaps, network RTT, effect readback and displayed-frame latency. Cross-PC one-way measurements need synchronized clocks or an alternative measurement design. No linear extrapolation from 100,000 synthetic records or 2,701 simple rocks to arbitrary parks.
 
-## Measurement and QA
-
-- 109 remote overlap is not local input overlap. 111 demonstrates actual local overlap in three of four coordinated automatic rounds.
-- 116 is incomplete; 117 Test 5 and 118 have matching completions.
-- Obtain a matched corrected 087 pair before certifying it or explaining the earlier 657-ms gap.
-- Separate callback time, scheduling gaps, initialization, source sampling, effect verification and rendered latency.
-- 118 confirmation includes a deliberate two-second outage; do not compare it with normal Kepler/pipe timings as a speed regression.
-- Broaden realistic parks, sustained traffic, GC/allocation/failure profiling and automated regression coverage. Synthetic 100,000-entry registers are not 100,000 real-object tests.
-
-Kepler's exact pacing mechanism, full simulation synchronization, arbitrary-crash exactly-once and a released internet alpha remain unverified.
+The reported exit crash remains unisolated. Own logging and successful BYE drain do not prove crash-free process shutdown. Long soaks, realistic mixed parks, broader automated game regressions and presented-frame capture remain needed. Kepler's exact pacing mechanism remains hypothetical.

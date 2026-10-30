@@ -1,14 +1,12 @@
 # Own native bridge, local messaging and diagnostics
 
-**Updated 2026-10-26. Local runtime evidence through 118; 119 prepared only.**
+## Current update — 2026-10-30
 
-[Current status](../research/STATUS.md) · [083–084 evidence ledger](../research/DIAGNOSTICS_083_084.md) · [Historical Kepler measurements](HTTP_LATENCY_080_082.md) · [Benchmarks](BENCHMARKS.md)
+The [119–130 ledger](../research/DIAGNOSTICS_119_130.md) adds matched controlled game/Python/combined restarts, multiple resources, scale/colors, grid groups, manual Split/Merge/history and completed mixed building. [Build Together](BUILD_TOGETHER_LOBBY.md) adds private local admission, either-client host, shared DLC/readiness and coordinated template load/build release. Current local UI/protocol is LOBBY_ALPHA04_2 with an accepted English stacked layout.
 
-## Current update — 2026-10-26, through 118; 119 prepared
+The game-UI input startup error is fixed by waiting for the imported game Engine.whenReady, not global browser engine.whenReady. Both BYE replies are drained before local pipe teardown. These are tested local lifecycle findings, not a completed remote transport.
 
-The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
-
-Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
+[Direct IPv4/IPv6 TCP/TLS](INTERNET_PLAN.md) is the next proposed boundary between two local Python agents. Existing native-frame polls must remain local/asynchronous. No internet or general arbitrary-crash guarantee follows. Historical measurements below retain their original scope.
 
 ## Current decision
 

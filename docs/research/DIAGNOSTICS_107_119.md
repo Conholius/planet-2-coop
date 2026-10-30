@@ -1,5 +1,7 @@
 # Diagnostics 107–119: independent previews, shared editing and lock recovery
 
+> Historical cutoff: 2026-10-26. The 119-prepared statements below describe that date; corrected 119–130 results and the private lobby are now recorded in [119–130](DIAGNOSTICS_119_130.md) and [Build Together](../networking/BUILD_TOGETHER_LOBBY.md).
+
 **Reviewed 2026-10-26.** Runtime evidence reaches 118. **119 is prepared only; no code or runtime result is certified here.**
 
 [Current status](STATUS.md) · [Earlier ledger](DIAGNOSTICS_085_107.md) · [Native bridge](../networking/NATIVE_BRIDGE.md) · [Recovery](../networking/RECOVERY_AND_HISTORY.md)

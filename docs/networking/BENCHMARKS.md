@@ -1,5 +1,15 @@
 # Transport and editor measurements
 
+## Current measurement boundary — reviewed 2026-10-30
+
+[119–130](../research/DIAGNOSTICS_119_130.md) and [lobby/UI](BUILD_TOGETHER_LOBBY.md) add local results only. Corrected 119 new-Move receipt to verified ACK is about 65.47 ms; 121 about 66.77 ms. 120's approximately 2,226.66-ms confirmation includes an intentionally injected restart pause and is not ordinary network latency. All share one Windows host clock.
+
+Latest menu-only LOBBY_ALPHA04_2: mean diagnostic Advance execution about 0.0110 ms on A and 0.0108 ms on B; maximum observed Advance gaps about 670.8/637.4 ms remain separate, unattributed scheduling observations. Native worker exchange means about 0.1804/0.1800 ms are local pipe request/poll intervals, not full gameplay confirmations or WAN RTT. Completion and fast callbacks do not certify stutter-free rendering.
+
+The five-button host layout reports inside horizontal bounds. Three false samples appear at view/model changes; later samples pass and the owner reports no visible defect. Do not silently erase those samples or infer every-frame layout success. Literal hints/language are asset/visual evidence, not timing evidence. Two-PC network/application measurements remain planned.
+
+The dated tables below preserve earlier results and their measurement boundaries.
+
 ## Current measurements — reviewed 2026-10-26
 
 [Detailed evidence and boundaries](../research/DIAGNOSTICS_107_119.md). All values are local owner-run diagnostics, without ACSEDebug; they are not input-to-displayed-frame or WAN latency.

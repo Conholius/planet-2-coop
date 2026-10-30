@@ -1,26 +1,26 @@
-# Scenery co-op prototype: completed gates and next work
+# Build Together prototype: completed local gates and internet acceptance
 
-**Updated 2026-10-26.** [Status](../research/STATUS.md) · [107–119 ledger](../research/DIAGNOSTICS_107_119.md)
+**Reviewed 2026-10-30.** [Status](../research/STATUS.md) · [119–130 ledger](../research/DIAGNOSTICS_119_130.md) · [Private lobby](../networking/BUILD_TOGETHER_LOBBY.md)
 
-## Achieved within local diagnostic scope
+## Achieved locally
 
-Own DLL/Named Pipes/external Python carry supported manual Create/Move/Delete and history effects without ACSEDebug. 095–102 establish specific recovery/catch-up paths; 107 bidirectional live visual previews; 108–111 separate-token remote placement while own previews stay active, including measured overlap; 112–115 Move/live-drag/cancel/Delete/history under preview protection; 117 shared-object leases/conflicts and matching final registries; 118 held-edit/lost-ACK pipe recovery without duplicate effects.
+Own DLL/Named Pipes/external Python and own logging support actual two-client scenery edits, independent previews and separate-token commits, properties, grid groups, Split/Merge, supported own history and conflict leases. Controlled pipe/Python/game/combined recovery has diagnostic-specific evidence through 121. Later 122–130 results broaden resources/properties/groups and mixed building.
 
-111 uses automatically confirmed prepared placements; three of four local commit rounds overlap. 116 is an incomplete own-object-restriction run, superseded in shared-object scope by 117. 085 remains an archived local UI proof.
+Specific 129 parallel/conflict/history variants complete; retained early 129-Free does not. Final 130 completes 43 commands with both client reports, no open locks and shared catalogue filters. This is not an unlimited free-building/product certification.
 
-These are owner-run local diagnostic gates. ACSE remains the loader, the native ABI is executable-profile-specific, and no released internet alpha is claimed.
+Build Together now supports either local client as host, private invitation/request/approval, one guest, DLC/readiness gates, same-template coordinated park start and build release. Current UI is English with stacked actions; the owner accepted its appearance. ACSE remains required, ACSEDebug does not.
 
 ## Next acceptance gates
 
-1. **119, prepared only:** restart the client holding a lease, reconcile a matching saved baseline and command/object state, retire stale authority and prove a fresh operation plus late-message rejection. Save authorization is a separate prerequisite; no 119 park save has occurred.
-2. Authenticated/encrypted companion communication on two computers, reconnect/backpressure/admission tests.
-3. Durable save/registry/status/tombstone integration and reconciliation of uncertain native commit outcomes; mismatched-save repair and late join.
-4. Collaborative Undo policy, revision changes by other actors, broader resources/scale/properties/groups and supported tool coverage.
-5. Host/join/baseline transfer/load/save workflow; finalize 085 menu integration after architecture decisions.
-6. Reproducible packaging, automated regressions, long soaks, presented-frame profiling and exit-crash isolation.
+1. Implement [direct IPv4/IPv6 companion transport](../networking/INTERNET_PLAN.md), TLS trust, reachable invitations, remote identity, local-to-room binding and bounded async routing. No native poll should require a WAN round trip.
+2. Assemble a portable original-code package and local endpoint setup for each PC; validate supported game/DLL/mod profiles and missing dependencies before exposing a join path.
+3. On two real PCs, verify wrong/expired invite rejection, host rejection/approval, exactly one guest, shared DLC and both-ready gates.
+4. Verify common tropical-template loading, both loaded/filter proofs and actual bidirectional Create/Move/Delete, groups/history and own-preview coexistence. Do not claim arbitrary save transfer.
+5. Validate duplicate/order/echo and lock behavior under real network delay and a controlled outage; record local worker, network and application timings separately. Finish with matching registries/no locks/all completion markers, without saving the test park.
+6. Later: optional relay fallback, durable host-save/custom metadata, uncertain-commit reconciliation, late join, general collaborative history policy, soak/frame measurements, exit-crash isolation and wider tool/resource coverage.
+
+These gates preserve verified local behavior while adding the unverified internet boundary. Neither dual-stack sockets nor port forwarding alone guarantees universal reachability. No public ready-to-install alpha has been released.
 
 ## Evidence rules
 
-Require matching participant runs, world checks and measured overlap intervals; completion labels alone are insufficient. Preserve historical failures as dated evidence.
-
-Committed actions remain lossless, immutable and ordered; disposable preview poses may coalesce. A worker never invokes Lua/game APIs. Native tokens/local IDs are not cross-process network identities. No persistent-placement claim follows from InstantiatePrefab and no arbitrary-crash guarantee follows from completed checkpoints or live-process pipe recovery.
+Require matching participant runs and world/readback proofs. Keep committed actions immutable/lossless and temporary preview poses disposable. Workers never invoke game/Lua APIs. Native tokens/IDs are not network identities. Preserve failed revisions and measurement limits; a successful checkpoint or live-process recovery is not arbitrary-crash exactly-once.

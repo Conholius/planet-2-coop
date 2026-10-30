@@ -1,10 +1,11 @@
 # Scenery placement and undo — critical research area
 
-## Current update — 2026-10-26, through 118; 119 prepared
+## Current update — 2026-10-30
 
-The [107–119 evidence ledger](../research/DIAGNOSTICS_107_119.md) extends earlier results: bidirectional live previews (107), separate-token remote commits during own previews (108–111), confirmed/live Move and cancel (112/113), shortened A→B Delete (114), source history via receiver counteractions (115), shared-object leases/conflicts (117) and held-edit/lost-ACK pipe recovery (118) passed their identified runs. **116 is incomplete** at its own-object restriction; **119 lease-holder client restart is prepared only**.
+[119–130 evidence](../research/DIAGNOSTICS_119_130.md) broadens earlier scenery support: multiple resources, actual scale and named RGB/reset, grid walls/groups, whole-group translation/rotation, manual Split/Merge, source history effects and mixed building. Full editor-grid restoration waits for initialized editor state; remote commits finish before their undo checkpoints. Group leases gate affected groups before mutation.
 
-Local supported-scenery diagnostics do not establish native commit/status/save atomicity, arbitrary-crash exactly-once or two-computer transport. Historical sections below retain their original evidence boundaries.
+128 Test 5 and specific 129 parallel/conflict/history stages complete; retained early 129-Free failed. Final 130 completes 43 mixed-building commands with no open locks/errors and shared DLC filtering. These finite supported-editor tests do not certify every scenery class, blueprint, custom grid, history rebase or asset dependency. [Local lobby](../networking/BUILD_TOGETHER_LOBBY.md) is verified; two-PC transport remains planned. Historical sections below retain their dates and narrower findings.
+
 
 ## Relevant API symbols from the inspected PC2 API inventory
 
